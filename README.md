@@ -18,7 +18,7 @@ I host my website on a mutualized server so what you need is :
 Also, in order to build dependencies, you will need :
 
 - Composer (Symfony dependencies)
-- NPM (React dependencies)
+- Yarn (React dependencies)
 
 **Installation**
 
