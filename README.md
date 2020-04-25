@@ -35,8 +35,8 @@ API documentation and request are now available on http://localhost/api/public
 
 **Front part wireframes**
 
-Accueil : https://wireframe.cc/ww7PEU
-A propos : https://wireframe.cc/Qv5L2d
-Compétences : https://wireframe.cc/QpfUrp
-Projets : https://wireframe.cc/TR2GN7
-Contact : https://wireframe.cc/Rx5N1t
+- Accueil : https://wireframe.cc/ww7PEU
+- A propos : https://wireframe.cc/Qv5L2d
+- Compétences : https://wireframe.cc/QpfUrp
+- Projets : https://wireframe.cc/TR2GN7
+- Contact : https://wireframe.cc/Rx5N1t
