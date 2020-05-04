@@ -40,11 +40,6 @@ class Skill
      */
     private $rating;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $logo_url;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -116,17 +111,4 @@ class Skill
 
         return $this;
     }
-
-    public function getLogoUrl(): ?string
-    {
-        return $this->logo_url;
-    }
-
-    public function setLogoUrl(string $logo_url): self
-    {
-        $this->logo_url = $logo_url;
-
-        return $this;
-    }
-    
 }

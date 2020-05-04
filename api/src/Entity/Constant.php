@@ -18,7 +18,7 @@ class Constant
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
      * @var string key of the constant
      *
@@ -33,6 +33,13 @@ class Constant
      * @ORM\Column(type="text")
      */
     public $value;
+
+    /**
+     * @var string type of the constant
+     *
+     * @ORM\Column(type="text")
+     */
+    public $type;
 
     public function getId(): ?int
     {

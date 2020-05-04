@@ -31,11 +31,6 @@ class Project
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image_url;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Skill")
      */
     private $skills;
@@ -79,18 +74,6 @@ class Project
         return $this;
     }
 
-    public function getImageUrl(): ?string
-    {
-        return $this->image_url;
-    }
-
-    public function setImageUrl(string $image_url): self
-    {
-        $this->image_url = $image_url;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Skill[]
      */
@@ -128,5 +111,4 @@ class Project
 
         return $this;
     }
-
 }
