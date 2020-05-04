@@ -25,7 +25,7 @@ Also, in order to build dependencies, you will need :
     // from /api
     composer install
 
-** Setup database and API**
+**Setup database and API**
 In /api/.env, set env variable `DATABASE_URL=mysql://USER:PSWD@localhost:3306/DB_NAME?serverVersion=5.7` and run :
 
     php bin/console doctrine:database:create
