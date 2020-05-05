@@ -1,12 +1,11 @@
 import React from "react";
-import { EditGuesser, InputGuesser } from "@api-platform/admin";
-import TypeRadioInput from "./TypeRadioInput";
+import { EditGuesser, InputGuesser, FieldGuesser } from "@api-platform/admin";
 
 const EditConstants = (props) => (
   <EditGuesser {...props}>
     <InputGuesser source="key" />
     <InputGuesser source="value" />
-    <TypeRadioInput source="type" />
+    <FieldGuesser source="type" addLabel={true} />
   </EditGuesser>
 );
 
