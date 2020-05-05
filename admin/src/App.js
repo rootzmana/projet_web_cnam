@@ -38,5 +38,6 @@ export default () => (
       show={ShowSkills}
       list={ListSkills}
     />
+    <ResourceGuesser name="media_objects" /> {/* TODO */}
   </HydraAdmin>
 );
