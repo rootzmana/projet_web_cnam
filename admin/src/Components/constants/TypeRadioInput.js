@@ -13,6 +13,7 @@ const TypeRadioInput = (props) => {
     <RadioButtonGroupInput
       {...props}
       className={classes.root}
+      options={{ value: "plain" }}
       choices={[
         { id: "plain", name: "Plain text" },
         { id: "img", name: "Image" },
