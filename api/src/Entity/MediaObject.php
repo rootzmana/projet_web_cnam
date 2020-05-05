@@ -46,6 +46,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *     },
  *     itemOperations={
  *         "get",
+ *         "delete"
  *     }
  * )
  * @Vich\Uploadable
