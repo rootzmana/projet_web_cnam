@@ -19,9 +19,37 @@ import ListSkills from "./Components/skills/ListSkills";
 import CreateMediaObjects from "./Components/media_objects/CreateMediaObjects";
 import ShowMediaObjects from "./Components/media_objects/ShowMediaObjects";
 import ListMediaObjects from "./Components/media_objects/ListMediaObjects";
+import dataProviderFactory from "@api-platform/admin/src/hydra/dataProvider";
+
+const entrypoint = process.env.REACT_APP_API_ENTRYPOINT;
+
+const dataProvider = dataProviderFactory(entrypoint);
+const myDataProvider = {
+  ...dataProvider,
+  create: (resource, params) => {
+    if (resource !== "media_objects") {
+      const test = dataProvider.create(resource, params);
+      console.log(test);
+      return test;
+    } else {
+      const body = new FormData();
+      body.append("file", params.data.file.rawFile);
+
+      return fetch(`${entrypoint}/media_objects`, {
+        body,
+        method: "POST",
+      }).then((response) => {
+        return { data: response.json() };
+      });
+    }
+  },
+};
 
 export default () => (
-  <HydraAdmin entrypoint={process.env.REACT_APP_API_ENTRYPOINT}>
+  <HydraAdmin
+    entrypoint={process.env.REACT_APP_API_ENTRYPOINT}
+    dataProvider={myDataProvider}
+  >
     <ResourceGuesser
       name="constants"
       create={CreateConstants}
@@ -43,6 +71,11 @@ export default () => (
       show={ShowSkills}
       list={ListSkills}
     />
-    <ResourceGuesser name="media_objects" />
+    <ResourceGuesser
+      name="media_objects"
+      create={CreateMediaObjects}
+      show={ShowMediaObjects}
+      list={ListMediaObjects}
+    />
   </HydraAdmin>
 );

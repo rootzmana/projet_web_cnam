@@ -1,13 +1,14 @@
 import React from "react";
-import { CreateGuesser } from "@api-platform/admin";
-import { FileInput, FileField } from "react-admin";
+import { FileInput, FileField, Create, SimpleForm } from "react-admin";
 
 const CreateMediaObjects = (props) => (
-  <CreateGuesser {...props}>
-    <FileInput source="file" accept="application/pdf">
-      <FileField source="src" title="title" />
-    </FileInput>
-  </CreateGuesser>
+  <Create {...props}>
+    <SimpleForm redirect="list">
+      <FileInput source="file" accept="application/pdf">
+        <FileField source="src" title="title" />
+      </FileInput>
+    </SimpleForm>
+  </Create>
 );
 
 export default CreateMediaObjects;
