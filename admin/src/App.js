@@ -1,5 +1,6 @@
 import React from "react";
 import { HydraAdmin, ResourceGuesser } from "@api-platform/admin";
+
 import CreateConstants from "./Components/constants/CreateConstants";
 import EditConstants from "./Components/constants/EditConstants";
 import ShowConstants from "./Components/constants/ShowConstants";
@@ -14,6 +15,10 @@ import CreateSkills from "./Components/skills/CreateSkills";
 import EditSkills from "./Components/skills/EditSkills";
 import ShowSkills from "./Components/skills/ShowSkills";
 import ListSkills from "./Components/skills/ListSkills";
+
+import CreateMediaObjects from "./Components/media_objects/CreateMediaObjects";
+import ShowMediaObjects from "./Components/media_objects/ShowMediaObjects";
+import ListMediaObjects from "./Components/media_objects/ListMediaObjects";
 
 export default () => (
   <HydraAdmin entrypoint={process.env.REACT_APP_API_ENTRYPOINT}>
@@ -38,6 +43,6 @@ export default () => (
       show={ShowSkills}
       list={ListSkills}
     />
-    <ResourceGuesser name="media_objects" /> {/* TODO */}
+    <ResourceGuesser name="media_objects" />
   </HydraAdmin>
 );
