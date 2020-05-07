@@ -9,12 +9,7 @@ const EditConstants = (props) => (
     <FieldGuesser source="type" addLabel={true} />
     <FormDataConsumer>
       {({ formData, ...rest }) => (
-        <ValueInput
-          source="value"
-          validate={required()}
-          type={formData.type}
-          {...rest}
-        />
+        <ValueInput validate={required()} type={formData.type} {...rest} />
       )}
     </FormDataConsumer>
   </EditGuesser>

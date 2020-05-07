@@ -6,33 +6,19 @@ import {
   TopToolbar,
   DeleteButton,
 } from "react-admin";
+import DisplayMedia from "../shared/DisplayMedia";
 
 const ShowMediaObjects = (props) => {
   const { record } = useShowController(props);
 
-  var url = "";
-  if (record !== undefined) {
-    url = process.env.REACT_APP_API_ENTRYPOINT + record.contentUrl;
+  if (record === undefined) {
+    return null;
   }
 
   return (
     <Show actions={<MyShowActions />} {...props}>
       <SimpleShowLayout>
-        {url.split(".").pop() === "pdf" ? (
-          <a href={url} target="blank">
-            {record.contentUrl}
-          </a>
-        ) : (
-          <>
-            <span>{url}</span>
-            <img
-              class="fit-picture"
-              src={url}
-              style={{ margin: "1em" }}
-              alt={url}
-            />
-          </>
-        )}
+        <DisplayMedia mediaId={record.id} />
       </SimpleShowLayout>
     </Show>
   );
