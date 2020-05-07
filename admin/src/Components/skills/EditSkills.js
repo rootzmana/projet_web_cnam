@@ -7,6 +7,7 @@ const EditSkills = (props) => (
     <InputGuesser source="parent" />
     <InputGuesser source="skills" />
     <InputGuesser source="rating" />
+    <InputGuesser source="image" />
   </EditGuesser>
 );
 

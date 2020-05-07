@@ -1,5 +1,6 @@
 import React from "react";
 import { ListGuesser, FieldGuesser } from "@api-platform/admin";
+import { TextField } from "react-admin";
 
 const ListSkills = (props) => (
   <ListGuesser {...props}>
@@ -7,6 +8,7 @@ const ListSkills = (props) => (
     <FieldGuesser source="parent" />
     <FieldGuesser source="skills" />
     <FieldGuesser source="rating" />
+    <TextField source="image" />
   </ListGuesser>
 );
 
