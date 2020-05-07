@@ -19,7 +19,14 @@ const DisplayMedia = ({ mediaId }) => {
   ) : (
     <>
       <span>{url}</span>
-      <img class="fit-picture" src={url} style={{ margin: "1em" }} alt={url} />
+      <div>
+        <img
+          class="fit-picture"
+          src={url}
+          style={{ margin: "1em" }}
+          alt={url}
+        />
+      </div>
     </>
   );
 };
