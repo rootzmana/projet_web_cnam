@@ -19,6 +19,7 @@ import ListSkills from "./Components/skills/ListSkills";
 import CreateMediaObjects from "./Components/media_objects/CreateMediaObjects";
 import ShowMediaObjects from "./Components/media_objects/ShowMediaObjects";
 import ListMediaObjects from "./Components/media_objects/ListMediaObjects";
+
 import dataProviderFactory from "@api-platform/admin/src/hydra/dataProvider";
 
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT;
@@ -31,7 +32,6 @@ const myDataProvider = {
       return dataProvider.create(resource, params);
     } else {
       const body = new FormData();
-      console.log(params);
       if (params.data.type === "pdf") {
         body.append("file", params.data.file.rawFile);
       } else {
