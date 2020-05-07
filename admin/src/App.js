@@ -21,7 +21,8 @@ import ShowMediaObjects from "./Components/media_objects/ShowMediaObjects";
 import ListMediaObjects from "./Components/media_objects/ListMediaObjects";
 
 import dataProviderFactory from "@api-platform/admin/src/hydra/dataProvider";
-
+import { myTheme } from "./Components/shared/myCustomTheme";
+import MyLayout from "./Components/shared/MyLayout";
 const entrypoint = process.env.REACT_APP_API_ENTRYPOINT;
 
 const dataProvider = dataProviderFactory(entrypoint);
@@ -52,6 +53,8 @@ export default () => (
   <HydraAdmin
     entrypoint={process.env.REACT_APP_API_ENTRYPOINT}
     dataProvider={myDataProvider}
+    theme={myTheme}
+    layout={MyLayout}
   >
     <ResourceGuesser
       name="constants"
