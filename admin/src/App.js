@@ -28,12 +28,15 @@ const myDataProvider = {
   ...dataProvider,
   create: (resource, params) => {
     if (resource !== "media_objects") {
-      const test = dataProvider.create(resource, params);
-      console.log(test);
-      return test;
+      return dataProvider.create(resource, params);
     } else {
       const body = new FormData();
-      body.append("file", params.data.file.rawFile);
+      console.log(params);
+      if (params.data.type === "pdf") {
+        body.append("file", params.data.file.rawFile);
+      } else {
+        body.append("file", params.data.picture.rawFile);
+      }
 
       return fetch(`${entrypoint}/media_objects`, {
         body,
