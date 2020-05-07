@@ -11,12 +11,7 @@ const CreateConstants = (props) => {
       <TypeRadioInput source="type" validate={required()} />
       <FormDataConsumer>
         {({ formData, ...rest }) => (
-          <ValueInput
-            source="value"
-            validate={required()}
-            type={formData.type}
-            {...rest}
-          />
+          <ValueInput type={formData.type} {...rest} />
         )}
       </FormDataConsumer>
     </CreateGuesser>

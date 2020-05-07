@@ -1,33 +1,20 @@
 import React from "react";
-import {
-  TextInput,
-  ImageInput,
-  ImageField,
-  FileInput,
-  FileField,
-} from "react-admin";
+import { TextInput } from "react-admin";
 import RichTextInput from "ra-input-rich-text";
+import InputGuesser from "@api-platform/admin/lib/InputGuesser";
 
 const ValueInput = ({ type, ...props }) => {
   switch (type) {
     case "plain":
-      return <TextInput {...props} />;
+      return <TextInput source="value" {...props} />;
     case "img":
-      return (
-        <ImageInput {...props} accept="image/*">
-          <ImageField source="src" title="title" />
-        </ImageInput>
-      );
+      return <InputGuesser source="file" {...props} />;
     case "html":
-      return <RichTextInput {...props} />;
+      return <RichTextInput source="value" {...props} />;
     case "file":
-      return (
-        <FileInput {...props} accept="application/pdf">
-          <FileField source="src" title="title" />
-        </FileInput>
-      );
+      return <InputGuesser source="file" {...props} />;
     default:
-      return <TextInput {...props} />;
+      return <TextInput source="value" {...props} />;
   }
 };
 
