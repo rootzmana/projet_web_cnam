@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.Section {
+  min-height: 100vh;
+}
+
+.Section:nth-child(odd) {
+  background-color: #61dafb;
+}
+
+.Section:nth-child(even) {
+  background-color: red;
+}
