@@ -9,6 +9,9 @@ function App() {
     <ThemeProvider theme={myTheme}>
       <div className="App">
         <MainAppBar />
+        <div id="home_section" className="Section">
+          home
+        </div>
         <div id="about_section" className="Section">
           about
         </div>

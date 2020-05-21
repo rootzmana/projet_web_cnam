@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import Slide from "@material-ui/core/Slide";
+import { Link } from "react-scroll";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
   title: {
     flexGrow: 1,
     textAlign: "initial",
+    cursor: "pointer",
   },
 }));
 
@@ -55,27 +57,46 @@ export default function MainAppBar() {
         <HideOnScroll>
           <AppBar>
             <Toolbar>
-              <Typography variant="h4" className={classes.title}>
-                {data.AppBar_MainTitle.value}
-              </Typography>
-              <Button color="inherit">
-                {data.AppBar_AboutButtonLabel.value}
-              </Button>
-              <Button color="inherit">
-                {data.AppBar_SkillsButtonLabel.value}
-              </Button>
-              <Button color="inherit">
-                {data.AppBar_ProjectsButtonLabel.value}
-              </Button>
-              <Button color="inherit">
-                {data.AppBar_ContactButtonLabel.value}
-              </Button>
+              <Link
+                to="home_section"
+                spy={true}
+                smooth={true}
+                className={classes.title}
+              >
+                <Typography variant="h4" component="a">
+                  {data.AppBar_MainTitle.value}
+                </Typography>
+              </Link>
+              <AppBarButton
+                to="about_section"
+                label={data.AppBar_AboutButtonLabel.value}
+              />
+              <AppBarButton
+                to="skills_section"
+                label={data.AppBar_SkillsButtonLabel.value}
+              />
+              <AppBarButton
+                to="projects_section"
+                label={data.AppBar_ProjectsButtonLabel.value}
+              />
+              <AppBarButton
+                to="contact_section"
+                label={data.AppBar_ContactButtonLabel.value}
+              />
             </Toolbar>
           </AppBar>
         </HideOnScroll>
       </div>
     );
   }
+}
+
+function AppBarButton({ to, label }) {
+  return (
+    <Link to={to} spy={true} smooth={true} duration={500}>
+      <Button color="inherit">{label}</Button>
+    </Link>
+  );
 }
 
 function HideOnScroll(props) {
