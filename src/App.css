@@ -41,10 +41,7 @@
   min-height: 100vh;
 }
 
-.Section:nth-child(odd) {
-  background-color: #61dafb;
-}
-
-.Section:nth-child(even) {
-  background-color: red;
+.Home {
+  background: url("./img/bg-img-home.jpg") no-repeat center fixed;
+  background-size: cover;
 }

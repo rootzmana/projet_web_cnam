@@ -3,14 +3,15 @@ import "./App.css";
 import MainAppBar from "./components/MainAppbar";
 import { ThemeProvider } from "@material-ui/core";
 import { myTheme } from "./components/myCustomTheme";
+import HomeSection from "./components/HomeSection";
 
 function App() {
   return (
     <ThemeProvider theme={myTheme}>
       <div className="App">
         <MainAppBar />
-        <div id="home_section" className="Section">
-          home
+        <div id="home_section" className="Section Home">
+          <HomeSection />
         </div>
         <div id="about_section" className="Section">
           about
