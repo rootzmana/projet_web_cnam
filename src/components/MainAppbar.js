@@ -11,6 +11,7 @@ import { Link } from "react-scroll";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,34 +64,36 @@ export default function MainAppBar() {
         <div className={classes.root}>
           <HideOnScroll>
             <AppBar>
-              <Toolbar>
-                <Link
-                  to="home_section"
-                  spy={true}
-                  smooth={true}
-                  className={classes.title}
-                >
-                  <Typography variant="h4">
-                    {data.AppBar_MainTitle.value}
-                  </Typography>
-                </Link>
-                <AppBarButton
-                  to="about_section"
-                  label={data.AppBar_AboutButtonLabel.value}
-                />
-                <AppBarButton
-                  to="skills_section"
-                  label={data.AppBar_SkillsButtonLabel.value}
-                />
-                <AppBarButton
-                  to="projects_section"
-                  label={data.AppBar_ProjectsButtonLabel.value}
-                />
-                <AppBarButton
-                  to="contact_section"
-                  label={data.AppBar_ContactButtonLabel.value}
-                />
-              </Toolbar>
+              <Fade in timeout={2000}>
+                <Toolbar>
+                  <Link
+                    to="home_section"
+                    spy={true}
+                    smooth={true}
+                    className={classes.title}
+                  >
+                    <Typography variant="h4">
+                      {data.AppBar_MainTitle.value}
+                    </Typography>
+                  </Link>
+                  <AppBarButton
+                    to="about_section"
+                    label={data.AppBar_AboutButtonLabel.value}
+                  />
+                  <AppBarButton
+                    to="skills_section"
+                    label={data.AppBar_SkillsButtonLabel.value}
+                  />
+                  <AppBarButton
+                    to="projects_section"
+                    label={data.AppBar_ProjectsButtonLabel.value}
+                  />
+                  <AppBarButton
+                    to="contact_section"
+                    label={data.AppBar_ContactButtonLabel.value}
+                  />
+                </Toolbar>
+              </Fade>
             </AppBar>
           </HideOnScroll>
         </div>
