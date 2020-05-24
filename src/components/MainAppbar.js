@@ -112,61 +112,63 @@ export default function MainAppBar() {
         <div className={classes.root}>
           <HideOnScroll>
             <AppBar>
-              <Toolbar>
-                <Link
-                  to="home_section"
-                  spy={true}
-                  smooth={true}
-                  className={classes.title}
-                >
-                  <Typography variant="h6">
-                    {data.AppBar_MainTitle.value}
-                  </Typography>
-                </Link>
-                <div>
-                  <IconButton onClick={handleMenu} color="inherit">
-                    <MenuIcon />
-                  </IconButton>
-                  <Menu
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={open}
-                    onClose={handleClose}
+              <Fade in timeout={2000}>
+                <Toolbar>
+                  <Link
+                    to="home_section"
+                    spy={true}
+                    smooth={true}
+                    className={classes.title}
                   >
-                    <AppBarMenuItem
-                      to="about_section"
-                      label={data.AppBar_AboutButtonLabel.value}
-                      handleClose={handleClose}
-                    />
-                    <Divider />
-                    <AppBarMenuItem
-                      to="skills_section"
-                      label={data.AppBar_SkillsButtonLabel.value}
-                      handleClose={handleClose}
-                    />
-                    <Divider />
-                    <AppBarMenuItem
-                      to="projects_section"
-                      label={data.AppBar_ProjectsButtonLabel.value}
-                      handleClose={handleClose}
-                    />
-                    <Divider />
-                    <AppBarMenuItem
-                      to="contact_section"
-                      label={data.AppBar_ContactButtonLabel.value}
-                      handleClose={handleClose}
-                    />
-                  </Menu>
-                </div>
-              </Toolbar>
+                    <Typography variant="h6">
+                      {data.AppBar_MainTitle.value}
+                    </Typography>
+                  </Link>
+                  <div>
+                    <IconButton onClick={handleMenu} color="inherit">
+                      <MenuIcon />
+                    </IconButton>
+                    <Menu
+                      anchorEl={anchorEl}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={open}
+                      onClose={handleClose}
+                    >
+                      <AppBarMenuItem
+                        to="about_section"
+                        label={data.AppBar_AboutButtonLabel.value}
+                        handleClose={handleClose}
+                      />
+                      <Divider />
+                      <AppBarMenuItem
+                        to="skills_section"
+                        label={data.AppBar_SkillsButtonLabel.value}
+                        handleClose={handleClose}
+                      />
+                      <Divider />
+                      <AppBarMenuItem
+                        to="projects_section"
+                        label={data.AppBar_ProjectsButtonLabel.value}
+                        handleClose={handleClose}
+                      />
+                      <Divider />
+                      <AppBarMenuItem
+                        to="contact_section"
+                        label={data.AppBar_ContactButtonLabel.value}
+                        handleClose={handleClose}
+                      />
+                    </Menu>
+                  </div>
+                </Toolbar>
+              </Fade>
             </AppBar>
           </HideOnScroll>
         </div>

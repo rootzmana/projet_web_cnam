@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Fade from "@material-ui/core/Fade";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     color: "white",
+    margin: theme.spacing(1),
   },
 }));
 
@@ -29,6 +31,8 @@ export default function HomeSection() {
     res.json().then((res) => setConstants(res));
   }
 
+  const matches = useMediaQuery("(min-width:600px)");
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -41,10 +45,10 @@ export default function HomeSection() {
     return (
       <Fade in timeout={1500}>
         <Box className={classes.root}>
-          <Typography variant="h1" className={classes.text}>
+          <Typography variant={matches ? "h1" : "h3"} className={classes.text}>
             {data.Home_Title.value}
           </Typography>
-          <Typography variant="h2" className={classes.text}>
+          <Typography variant={matches ? "h2" : "h4"} className={classes.text}>
             {data.Home_Subtitle.value}
           </Typography>
         </Box>
