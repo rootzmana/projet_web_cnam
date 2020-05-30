@@ -37,11 +37,16 @@
   }
 }
 
-.Section {
-  min-height: 100vh;
-}
-
 .Home {
   background: url("./img/bg-img-home.jpg") no-repeat center fixed;
   background-size: cover;
+  min-height: 100vh;
+}
+
+.Section {
+  padding-bottom: 5vh;
+}
+
+.Section:nth-child(even) {
+  background-color: #f2f7ff;
 }

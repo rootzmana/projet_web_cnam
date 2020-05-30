@@ -15,4 +15,12 @@ export const myTheme = createMuiTheme({
       contrastText: "#fff",
     },
   },
+  overrides: {
+    MuiSkeleton: {
+      // Name of the rule
+      root: {
+        backgroundColor: "#dedede",
+      },
+    },
+  },
 });
