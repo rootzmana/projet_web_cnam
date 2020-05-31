@@ -5,7 +5,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 export default function AboutSkeleton() {
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:960px)");
 
   return (
     <>

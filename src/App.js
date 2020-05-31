@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/core";
 import { myTheme } from "./components/myCustomTheme";
 import HomeSection from "./components/HomeSection";
 import AboutSection from "./components/AboutSection";
+import SkillsSection from "./components/SkillsSection";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <AboutSection />
         </div>
         <div id="skills_section" className="Section">
-          skills
+          <SkillsSection />
         </div>
         <div id="projects_section" className="Section">
           projects

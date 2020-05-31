@@ -23,7 +23,7 @@ export default function AboutSection() {
     files.json().then((res) => setFiles(res));
   }
 
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:960px)");
 
   useEffect(() => {
     fetchData();
@@ -35,7 +35,7 @@ export default function AboutSection() {
     const data = getDataForAboutSection(constants, files);
     return (
       <Fade in timeout={1000}>
-        <Grid container>
+        <Grid container style={{ flexGrow: 1 }}>
           <AboutTitle
             title={data.About_MainTitle.value}
             subtitle={data.About_MainSubtitle.value}

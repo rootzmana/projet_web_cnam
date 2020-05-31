@@ -24,9 +24,9 @@ export default function AboutLeftPanel({
   subtitle,
 }) {
   const classes = useStyles();
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(min-width:960px)");
   return (
-    <Grid item xs={12} md={3} style={{ marginLeft: matches ? "3em" : "0em" }}>
+    <Grid item md={12} lg={3} style={{ marginLeft: matches ? "3em" : "0em" }}>
       <img src={img} alt="Moi" className={classes.image} />
       <Typography
         color="primary"
