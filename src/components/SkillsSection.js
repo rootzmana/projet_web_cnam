@@ -12,19 +12,62 @@ const skills = [
     title: "Développement web",
     rating: 1,
     logoUrl: logoUrlTest,
-    childrens: [],
+    subSkills: [
+      {
+        title: "React",
+        rating: 1.5,
+        logoUrl: logoUrlTest,
+      },
+      {
+        title: "Api Platform",
+        rating: 1.5,
+        logoUrl: logoUrlTest,
+      },
+    ],
   },
   {
     title: "Développement mobile",
-    rating: 1,
+    rating: 2,
     logoUrl: logoUrlTest,
-    childrens: [],
+    subSkills: [
+      {
+        title: "iOS",
+        rating: 2.5,
+        logoUrl: logoUrlTest,
+      },
+    ],
   },
   {
     title: "Gestion de projet",
-    rating: 1,
+    rating: 3,
     logoUrl: logoUrlTest,
-    childrens: [],
+    subSkills: [
+      {
+        title: "Gestion Temps",
+        rating: 3.5,
+        logoUrl: logoUrlTest,
+      },
+      {
+        title: "Gestion Coût",
+        rating: 3.5,
+        logoUrl: logoUrlTest,
+      },
+      {
+        title: "Gestion Risque",
+        rating: 3.5,
+        logoUrl: logoUrlTest,
+      },
+      {
+        title: "Gestion Risque",
+        rating: 3.5,
+        logoUrl: logoUrlTest,
+      },
+      {
+        title: "Gestion Risque",
+        rating: 3.5,
+        logoUrl: logoUrlTest,
+      },
+    ],
   },
 ];
 // END TEST
@@ -37,7 +80,7 @@ export default function SkillsSection() {
           title="Mes compétences"
           subtitle="Vous pourrez trouver ci-dessous les différents langages informatiques que je maîtrise. Je souhaite élargir un peu plus chaque jour ma culture informatique. Je ne cherche qu'à apprendre et à gagner en expérience."
         />
-        <Grid item xs={12} style={{ padding: "1em" }}>
+        <Grid container item xs={12} style={{ padding: "1em" }}>
           <SkillsManager skills={skills} />
         </Grid>
       </Grid>

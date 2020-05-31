@@ -12,21 +12,42 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function SkillsManager({ skills }) {
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState("skill-0");
+  const [subskills, setSubskills] = useState(skills[0].subSkills);
+
+  const manageSelection = (index) => {
+    setSelected(`skill-${index}`);
+    setSubskills(skills[index].subSkills);
+  };
+
   const classes = useStyles();
   return (
-    <Grid item xs={6} className={classes.root}>
-      {skills.map((skill, index) => {
-        return (
-          <SkillCard
-            title={skill.title}
-            logoUrl={skill.logoUrl}
-            rating={skill.rating}
-            selected={`skill-${index}` === selected}
-            onClick={() => setSelected(`skill-${index}`)}
-          />
-        );
-      })}
-    </Grid>
+    <>
+      <Grid item xs={6} className={classes.root}>
+        {skills.map((skill, index) => {
+          return (
+            <SkillCard
+              title={skill.title}
+              logoUrl={skill.logoUrl}
+              rating={skill.rating}
+              selected={`skill-${index}` === selected}
+              onClick={() => manageSelection(index)}
+            />
+          );
+        })}
+      </Grid>
+      <Grid item xs={6} className={classes.root}>
+        {subskills.map((skill, index) => {
+          return (
+            <SkillCard
+              title={skill.title}
+              logoUrl={skill.logoUrl}
+              rating={skill.rating}
+              subSkills
+            />
+          );
+        })}
+      </Grid>
+    </>
   );
 }

@@ -28,9 +28,10 @@ export default function SkillCard({
   rating,
   selected,
   onClick,
+  subSkills,
 }) {
   const classes = useStyles();
-  const [elevation, setElevation] = useState(selected ? 5 : 1);
+  const [elevation, setElevation] = useState(selected && !subSkills ? 5 : 1);
 
   useEffect(() => {
     if (selected) {
@@ -42,17 +43,21 @@ export default function SkillCard({
 
   return (
     <Paper
-      className={`${classes.root} ${classes.selected}`}
-      elevation={elevation}
+      className={classes.root}
+      elevation={subSkills ? 1 : elevation}
       onMouseOver={() => setElevation(5)}
       onMouseOut={() => setElevation(selected ? 5 : 1)}
       onClick={onClick}
     >
       <img src={logoUrl} className={classes.img} alt={`skills ${title}`} />
-      <Typography variant="h5" className={classes.title} color="primary">
+      <Typography
+        variant={subSkills ? "h6" : "h5"}
+        className={classes.title}
+        color="primary"
+      >
         {title}
       </Typography>
-      <Rating defaultValue={rating} precision={0.5} readOnly />
+      <Rating value={rating} precision={0.5} readOnly size="large" />
     </Paper>
   );
 }

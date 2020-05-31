@@ -18,7 +18,7 @@ function App() {
         <div id="about_section" className="Section">
           <AboutSection />
         </div>
-        <div id="skills_section" className="Section">
+        <div id="skills_section" className="Section Skills">
           <SkillsSection />
         </div>
         <div id="projects_section" className="Section">
