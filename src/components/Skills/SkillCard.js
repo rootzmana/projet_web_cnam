@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, Paper } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -33,6 +34,8 @@ export default function SkillCard({
   const classes = useStyles();
   const [elevation, setElevation] = useState(selected && !subSkills ? 5 : 1);
 
+  const matches = useMediaQuery("(min-width:960px)");
+
   useEffect(() => {
     if (selected) {
       setElevation(5);
@@ -48,10 +51,15 @@ export default function SkillCard({
       onMouseOver={() => setElevation(5)}
       onMouseOut={() => setElevation(selected ? 5 : 1)}
       onClick={onClick}
+      style={{
+        flexDirection: matches ? "row" : "column",
+      }}
     >
-      <img src={logoUrl} className={classes.img} alt={`skills ${title}`} />
+      {matches && (
+        <img src={logoUrl} className={classes.img} alt={`skills ${title}`} />
+      )}
       <Typography
-        variant={subSkills ? "h6" : "h5"}
+        variant={!matches ? "body1" : subSkills ? "h6" : "h5"}
         className={classes.title}
         color="primary"
       >

@@ -32,6 +32,7 @@ export default function SkillsManager({ skills }) {
               rating={skill.rating}
               selected={`skill-${index}` === selected}
               onClick={() => manageSelection(index)}
+              key={`skill-${index}`}
             />
           );
         })}
@@ -44,6 +45,7 @@ export default function SkillsManager({ skills }) {
               logoUrl={skill.logoUrl}
               rating={skill.rating}
               subSkills
+              key={`skill-${index}`}
             />
           );
         })}
