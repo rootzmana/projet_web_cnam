@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography, Paper } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,17 +22,31 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function SkillCard({ title, logoUrl, rating }) {
+export default function SkillCard({
+  title,
+  logoUrl,
+  rating,
+  selected,
+  onClick,
+}) {
   const classes = useStyles();
+  const [elevation, setElevation] = useState(selected ? 5 : 1);
 
-  const [elevation, setElevation] = useState(1);
+  useEffect(() => {
+    if (selected) {
+      setElevation(5);
+    } else {
+      setElevation(1);
+    }
+  }, [selected]);
 
   return (
     <Paper
-      className={classes.root}
+      className={`${classes.root} ${classes.selected}`}
       elevation={elevation}
       onMouseOver={() => setElevation(5)}
-      onMouseOut={() => setElevation(1)}
+      onMouseOut={() => setElevation(selected ? 5 : 1)}
+      onClick={onClick}
     >
       <img src={logoUrl} className={classes.img} alt={`skills ${title}`} />
       <Typography variant="h5" className={classes.title} color="primary">
