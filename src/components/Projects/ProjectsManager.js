@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
@@ -36,14 +36,13 @@ export default function ProjectsManager({ projects }) {
       >
         {projects.map((p, index) => {
           return (
-            <>
+            <Fragment key={`project-${index}`}>
               <ProjectCard
                 title={p.name}
                 selected={`project-${index}` === selected}
                 onClick={() => manageSelection(index)}
-                key={`project-${index}`}
               />
-            </>
+            </Fragment>
           );
         })}
       </Grid>

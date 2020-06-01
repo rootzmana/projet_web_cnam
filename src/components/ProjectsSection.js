@@ -2,6 +2,7 @@ import React from "react";
 import AboutTitle from "./About/AboutTitle";
 import { Fade, Grid } from "@material-ui/core";
 import ProjectsManager from "./Projects/ProjectsManager";
+import ProjectsSkeleton from "./Projects/ProjectsSkeleton";
 
 // Mock values
 const desc =
@@ -40,23 +41,27 @@ const projects = [
 ];
 // End mock
 export default function ProjectsSection() {
-  return (
-    <Fade in timeout={1000}>
-      <Grid container style={{ justifyContent: "center" }}>
-        <AboutTitle
-          title="Mes projet"
-          subtitle="C'est ici que je conserve mes travaux réalisés dans le cadre de mes études ou personnellement. Je compte bien allonger la liste au fil du temps !"
-        />
-        <Grid
-          container
-          item
-          xs={12}
-          style={{ padding: "1em", justifyContent: "center" }}
-          spacing={6}
-        >
-          <ProjectsManager projects={projects} />
+  if (true) {
+    return <ProjectsSkeleton />;
+  } else {
+    return (
+      <Fade in timeout={1000}>
+        <Grid container style={{ justifyContent: "center" }}>
+          <AboutTitle
+            title="Mes projet"
+            subtitle="C'est ici que je conserve mes travaux réalisés dans le cadre de mes études ou personnellement. Je compte bien allonger la liste au fil du temps !"
+          />
+          <Grid
+            container
+            item
+            xs={12}
+            style={{ padding: "1em", justifyContent: "center" }}
+            spacing={6}
+          >
+            <ProjectsManager projects={projects} />
+          </Grid>
         </Grid>
-      </Grid>
-    </Fade>
-  );
+      </Fade>
+    );
+  }
 }

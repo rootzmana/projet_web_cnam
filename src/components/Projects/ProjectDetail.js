@@ -24,7 +24,7 @@ export default function ProjectDetail({ project }) {
           </Typography>
           <ul style={{ textAlign: "justify", marginTop: 0 }}>
             {project.skills.map((value, index) => (
-              <li>{value}</li>
+              <li key={index}>{value}</li>
             ))}
           </ul>
         </Grid>
@@ -70,7 +70,7 @@ export default function ProjectDetail({ project }) {
           </Typography>
           <ul style={{ textAlign: "justify", marginTop: 0 }}>
             {project.skills.map((value, index) => (
-              <li>{value}</li>
+              <li key={index}>{value}</li>
             ))}
           </ul>
         </Grid>
