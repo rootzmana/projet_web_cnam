@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, Button, Link } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 export default function ProjectDetail({ project }) {
@@ -36,6 +36,16 @@ export default function ProjectDetail({ project }) {
             dangerouslySetInnerHTML={{ __html: project.description }}
             style={{ textAlign: "justify" }}
           />
+          <Button variant="contained" color="secondary">
+            <Link
+              href={project.linkUrl}
+              target="blank"
+              underline="none"
+              style={{ color: "#fff" }}
+            >
+              Démo
+            </Link>
+          </Button>
         </Grid>
       </>
     );
@@ -73,6 +83,16 @@ export default function ProjectDetail({ project }) {
               <li key={index}>{value}</li>
             ))}
           </ul>
+          <Button variant="contained" color="secondary">
+            <Link
+              href={project.linkUrl}
+              target="blank"
+              underline="none"
+              style={{ color: "#fff" }}
+            >
+              Démo
+            </Link>
+          </Button>
         </Grid>
       </>
     );

@@ -1,49 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AboutTitle from "./About/AboutTitle";
 import { Fade, Grid } from "@material-ui/core";
 import ProjectsManager from "./Projects/ProjectsManager";
 import ProjectsSkeleton from "./Projects/ProjectsSkeleton";
 
-// Mock values
-const desc =
-  "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla at dui in magna scelerisque suscipit rutrum vel mi. Aenean interdum odio nulla. Aliquam erat volutpat. Aliquam sagittis augue at enim pellentesque, non porttitor mi congue. Donec in tortor mi. Sed scelerisque tellus et nisl dictum, efficitur sollicitudin nulla aliquet. Sed pellentesque arcu eget dapibus ultrices. Fusce nec purus maximus, mattis est at, dictum dolor. Proin ullamcorper mauris eu maximus semper. Proin ut molestie est. Maecenas vitae suscipit nulla, vitae tempus odio. Mauris sit amet lacinia risus, quis porttitor sem. Etiam eu arcu lacus. Praesent et odio nec mauris facilisis commodo. Nullam a egestas nunc, nec scelerisque mi.</p><p>Sed scelerisque facilisis tempor. Nulla nec euismod mauris. Vivamus non venenatis turpis, eget fermentum diam. Aenean fringilla efficitur libero, nec viverra libero accumsan sed. Curabitur et vulputate nisl. Etiam scelerisque lorem diam, vel ullamcorper urna congue nec. In blandit viverra mauris vel aliquam. Maecenas lorem mi, dictum eget cursus sit amet, tempor vitae dolor. Maecenas consequat, elit ac ultricies porttitor, nulla sem viverra nibh, malesuada tristique ipsum dui sed arcu. Donec et nisi et ex sagittis aliquet. Phasellus eu leo felis. Aliquam ullamcorper erat id enim mollis varius. Pellentesque lobortis dolor at nisl vulputate, sit amet scelerisque elit blandit. Ut nunc erat, lobortis eget accumsan non, rhoncus ut neque. Nam fringilla nibh sit amet viverra gravida. Mauris metus lectus, accumsan et turpis quis, cursus pharetra mi.</p>";
-const img =
-  "https://m.economictimes.com/thumb/msid-70158457,width-1200,height-900,resizemode-4,imgsize-113609/lotus-getty.jpg";
-const projects = [
-  {
-    name: "Projet 1",
-    description: desc,
-    linkUrl: "www.google.fr",
-    image: img,
-    skills: ["skill 1", "skill 2", "skill 3"],
-  },
-  {
-    name: "Projet 2",
-    description: desc,
-    linkUrl: "www.google.fr",
-    image: img,
-    skills: ["skill 1", "skill 2", "skill 3"],
-  },
-  {
-    name: "Projet 3",
-    description: desc,
-    linkUrl: "www.google.fr",
-    image: img,
-    skills: ["skill 1", "skill 2", "skill 3"],
-  },
-  {
-    name: "Projet 4",
-    description: desc,
-    linkUrl: "www.google.fr",
-    image: img,
-    skills: ["skill 1", "skill 2", "skill 3"],
-  },
-];
-// End mock
 export default function ProjectsSection() {
-  if (true) {
+  const [projects, setProjects] = useState();
+  const [skills, setSkills] = useState();
+  const [files, setFiles] = useState();
+
+  async function fetchData() {
+    const skills = await fetch(
+      process.env.REACT_APP_API_ENTRYPOINT + "/skills"
+    );
+    skills.json().then((res) => setSkills(res["hydra:member"]));
+
+    const files = await fetch(
+      process.env.REACT_APP_API_ENTRYPOINT + "/media_objects"
+    );
+    files.json().then((res) => setFiles(res["hydra:member"]));
+
+    const projects = await fetch(
+      process.env.REACT_APP_API_ENTRYPOINT + "/projects"
+    );
+    projects.json().then((res) => setProjects(res["hydra:member"]));
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (projects === undefined || skills === undefined || files === undefined) {
     return <ProjectsSkeleton />;
   } else {
+    const data = mapApiProjects(projects, files, skills);
+
     return (
       <Fade in timeout={1000}>
         <Grid container style={{ justifyContent: "center" }}>
@@ -58,10 +49,40 @@ export default function ProjectsSection() {
             style={{ padding: "1em", justifyContent: "center" }}
             spacing={6}
           >
-            <ProjectsManager projects={projects} />
+            <ProjectsManager projects={data} />
           </Grid>
         </Grid>
       </Fade>
     );
   }
+}
+function mapApiProjects(projects, files, skills) {
+  var res = [];
+  // eslint-disable-next-line
+  projects.map((p, index) => {
+    res[index] = {
+      name: p.name,
+      description: p.description,
+      linkUrl: p.linkUrl,
+      image: getImageForId(p.image, files),
+      skills: getSkillsForProject(p.skills, skills),
+    };
+  });
+  return res;
+}
+
+function getImageForId(id, files) {
+  const image = files.filter((f) => id === f["@id"]);
+  return process.env.REACT_APP_API_ENTRYPOINT + image[0].contentUrl;
+}
+
+function getSkillsForProject(projetSkills, skills) {
+  var res = [];
+  // eslint-disable-next-line
+  projetSkills.map((p, index) => {
+    const skill = skills.filter((sub) => sub["@id"] === p);
+
+    res[index] = skill[0].name;
+  });
+  return res;
 }

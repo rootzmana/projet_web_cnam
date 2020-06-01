@@ -34,7 +34,7 @@ export default function ProjectsSkeleton() {
           style={{ alignSelf: "center" }}
         />
       </Box>
-      <Grid container>
+      <Grid container style={{ justifyContent: "center" }}>
         <Grid
           container
           item
@@ -79,25 +79,90 @@ export default function ProjectsSkeleton() {
             />
           </Grid>
           <Grid item container md={9} xs={12} spacing={3}>
-            <Grid item xs={4}>
-              <Skeleton
-                variant="rect"
-                width={"100%"}
-                height="300px"
-                style={{ marginBottom: "1em" }}
-              />
-              <Skeleton variant="text" height="30px" width="200px" />
-              <Skeleton variant="text" width="100px" />
-              <Skeleton variant="text" width="100px" />
-              <Skeleton variant="text" width="100px" />
-            </Grid>
-            <Grid item xs={8}>
-              <Skeleton variant="text" height="50px" width="200px" />
-              <Skeleton variant="rect" height="300px" width="100%" />
-            </Grid>
+            {matches ? (
+              <ProjectDetailSkeletonDesktop />
+            ) : (
+              <ProjectDetailSkeletonMobile />
+            )}
           </Grid>
         </Grid>
       </Grid>
+    </>
+  );
+}
+
+function ProjectDetailSkeletonDesktop() {
+  return (
+    <>
+      <Grid item xs={4}>
+        <Skeleton
+          variant="rect"
+          width={"100%"}
+          height="300px"
+          style={{ marginBottom: "1em" }}
+        />
+        <Skeleton variant="text" height="30px" width="200px" />
+        <Skeleton variant="text" width="100px" />
+        <Skeleton variant="text" width="100px" />
+        <Skeleton variant="text" width="100px" />
+      </Grid>
+      <Grid item xs={8}>
+        <Skeleton variant="text" height="50px" width="200px" />
+        <Skeleton variant="rect" height="300px" width="100%" />
+        <Box
+          display="flex"
+          width="100%"
+          height="fit-content"
+          justifyContent="center"
+        >
+          <Skeleton
+            variant="rect"
+            height="40px"
+            width="100px"
+            style={{ margin: "1em" }}
+          />
+        </Box>
+      </Grid>
+    </>
+  );
+}
+
+function ProjectDetailSkeletonMobile() {
+  return (
+    <>
+      <Skeleton variant="text" height="50px" width="200px" />
+      <Skeleton
+        variant="rect"
+        width={"100%"}
+        height="300px"
+        style={{ marginBottom: "1em" }}
+      />
+      <Skeleton variant="rect" height="300px" width="100%" />
+      <Skeleton
+        variant="rect"
+        width="100%"
+        height="150px"
+        style={{ marginBottom: "1em" }}
+      />
+      <Box display="flex" flexDirection="column">
+        <Skeleton variant="text" height="30px" width="200px" />
+        <Skeleton variant="text" width="100px" />
+        <Skeleton variant="text" width="100px" />
+        <Skeleton variant="text" width="100px" />
+      </Box>
+      <Box
+        display="flex"
+        width="100%"
+        height="fit-content"
+        justifyContent="center"
+      >
+        <Skeleton
+          variant="rect"
+          height="40px"
+          width="100px"
+          style={{ margin: "1em" }}
+        />
+      </Box>
     </>
   );
 }

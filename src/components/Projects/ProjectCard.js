@@ -53,6 +53,7 @@ export default function ProjectCard({ title, selected, onClick, subSkills }) {
         variant={matches ? "h5" : "body2"}
         className={classes.title}
         style={{ color: color }}
+        noWrap
       >
         {title}
       </Typography>
