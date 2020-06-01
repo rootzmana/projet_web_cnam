@@ -1,82 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AboutTitle from "./About/AboutTitle";
 import { Fade, Grid } from "@material-ui/core";
 
 import SkillsManager from "./Skills/SkillsManager";
 import SkillsSkeleton from "./Skills/SkillsSkeleton";
 
-// ONLY FOR TEST
-const logoUrlTest =
-  "https://img2.freepng.fr/20180525/wvw/kisspng-web-development-logo-computer-programming-5b07d5d4af2bb4.0642809515272401487175.jpg";
-const skills = [
-  {
-    title: "Développement web",
-    rating: 1,
-    logoUrl: logoUrlTest,
-    subSkills: [
-      {
-        title: "React",
-        rating: 1.5,
-        logoUrl: logoUrlTest,
-      },
-      {
-        title: "Api Platform",
-        rating: 1.5,
-        logoUrl: logoUrlTest,
-      },
-    ],
-  },
-  {
-    title: "Développement mobile",
-    rating: 2,
-    logoUrl: logoUrlTest,
-    subSkills: [
-      {
-        title: "iOS",
-        rating: 2.5,
-        logoUrl: logoUrlTest,
-      },
-    ],
-  },
-  {
-    title: "Gestion de projet",
-    rating: 3,
-    logoUrl: logoUrlTest,
-    subSkills: [
-      {
-        title: "Gestion Temps",
-        rating: 3.5,
-        logoUrl: logoUrlTest,
-      },
-      {
-        title: "Gestion Coût",
-        rating: 3.5,
-        logoUrl: logoUrlTest,
-      },
-      {
-        title: "Gestion Risque",
-        rating: 3.5,
-        logoUrl: logoUrlTest,
-      },
-      {
-        title: "Gestion Risque",
-        rating: 3.5,
-        logoUrl: logoUrlTest,
-      },
-      {
-        title: "Gestion Risque",
-        rating: 3.5,
-        logoUrl: logoUrlTest,
-      },
-    ],
-  },
-];
-// END TEST
-
 export default function SkillsSection() {
-  if (true) {
+  const [apiSkills, setApiSkills] = useState();
+  const [files, setFiles] = useState();
+
+  async function fetchData() {
+    const res = await fetch(process.env.REACT_APP_API_ENTRYPOINT + "/skills");
+    res.json().then((res) => setApiSkills(res["hydra:member"]));
+
+    const files = await fetch(
+      process.env.REACT_APP_API_ENTRYPOINT + "/media_objects"
+    );
+    files.json().then((res) => setFiles(res["hydra:member"]));
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (apiSkills === undefined || files === undefined) {
     return <SkillsSkeleton />;
   } else {
+    const skills = mapApiSkillsToSkills(apiSkills, files);
+
     return (
       <Fade in timeout={1000}>
         <Grid container>
@@ -91,4 +42,39 @@ export default function SkillsSection() {
       </Fade>
     );
   }
+}
+
+function mapApiSkillsToSkills(apiSkills, files) {
+  const parentSkills = apiSkills.filter((s) => s.skills.length > 0);
+  const subSkills = apiSkills.filter((s) => s.skills.length === 0);
+  var res = [];
+  parentSkills.map((parent, index) => {
+    res[index] = {
+      title: parent.name,
+      rating: parent.rating,
+      logoUrl: getImageForId(parent.image, files),
+      subSkills: getSubskillsForParent(parent.skills, subSkills, files),
+    };
+  });
+  return res;
+}
+
+function getImageForId(id, files) {
+  const image = files.filter((f) => id === f["@id"]);
+  return process.env.REACT_APP_API_ENTRYPOINT + image[0].contentUrl;
+}
+
+function getSubskillsForParent(parentArray, allSubskills, files) {
+  var res = [];
+  parentArray.map((s, index) => {
+    console.log("s", s);
+    const subSkill = allSubskills.filter((sub) => sub["@id"] === s);
+    console.log("subSkill", subSkill);
+    res[index] = {
+      title: subSkill[0].name,
+      rating: subSkill[0].rating,
+      logoUrl: getImageForId(subSkill[0].image, files),
+    };
+  });
+  return res;
 }
