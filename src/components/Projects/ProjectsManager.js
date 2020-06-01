@@ -1,27 +1,39 @@
 import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import ProjectCard from "./ProjectCard";
-
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-}));
+import ProjectDetail from "./ProjectDetail";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 export default function ProjectsManager({ projects }) {
   const [selected, setSelected] = useState("project-0");
+  const [project, setProject] = useState(projects[0]);
+  const matches = useMediaQuery("(min-width:960px)");
 
   const manageSelection = (index) => {
     setSelected(`project-${index}`);
+    setProject(projects[index]);
+    console.log(project);
   };
 
-  const classes = useStyles();
   return (
     <>
-      <Grid item xs={3}>
+      <Grid
+        item
+        md={3}
+        xs={12}
+        style={
+          !matches
+            ? {
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+              }
+            : {
+                display: "flex",
+                flexDirection: "column",
+              }
+        }
+      >
         {projects.map((p, index) => {
           return (
             <>
@@ -34,6 +46,9 @@ export default function ProjectsManager({ projects }) {
             </>
           );
         })}
+      </Grid>
+      <Grid item container md={9} xs={12} spacing={3}>
+        <ProjectDetail project={project} />
       </Grid>
     </>
   );

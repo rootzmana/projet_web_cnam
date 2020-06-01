@@ -22,7 +22,7 @@ function App() {
         <div id="skills_section" className="Section Skills">
           <SkillsSection />
         </div>
-        <div id="projects_section" className="Section Skills">
+        <div id="projects_section" className="Section">
           <ProjectsSection />
         </div>
         <div id="contact_section" className="Section">

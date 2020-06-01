@@ -47,7 +47,7 @@ export default function ProjectCard({ title, selected, onClick, subSkills }) {
       onMouseOver={() => setElevation(10)}
       onMouseOut={() => setElevation(selected ? 10 : 1)}
       onClick={onClick}
-      style={{ backgroundColor: bgColor }}
+      style={{ backgroundColor: bgColor, width: matches ? "100%" : "25%" }}
     >
       <Typography
         variant={matches ? "h5" : "body2"}

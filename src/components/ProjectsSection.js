@@ -42,12 +42,18 @@ const projects = [
 export default function ProjectsSection() {
   return (
     <Fade in timeout={1000}>
-      <Grid container>
+      <Grid container style={{ justifyContent: "center" }}>
         <AboutTitle
           title="Mes projet"
           subtitle="C'est ici que je conserve mes travaux réalisés dans le cadre de mes études ou personnellement. Je compte bien allonger la liste au fil du temps !"
         />
-        <Grid container item xs={12} style={{ padding: "1em" }}>
+        <Grid
+          container
+          item
+          xs={12}
+          style={{ padding: "1em", justifyContent: "center" }}
+          spacing={6}
+        >
           <ProjectsManager projects={projects} />
         </Grid>
       </Grid>
