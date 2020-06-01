@@ -48,6 +48,7 @@ function mapApiSkillsToSkills(apiSkills, files) {
   const parentSkills = apiSkills.filter((s) => s.skills.length > 0);
   const subSkills = apiSkills.filter((s) => s.skills.length === 0);
   var res = [];
+  // eslint-disable-next-line
   parentSkills.map((parent, index) => {
     res[index] = {
       title: parent.name,
@@ -66,10 +67,9 @@ function getImageForId(id, files) {
 
 function getSubskillsForParent(parentArray, allSubskills, files) {
   var res = [];
+  // eslint-disable-next-line
   parentArray.map((s, index) => {
-    console.log("s", s);
     const subSkill = allSubskills.filter((sub) => sub["@id"] === s);
-    console.log("subSkill", subSkill);
     res[index] = {
       title: subSkill[0].name,
       rating: subSkill[0].rating,

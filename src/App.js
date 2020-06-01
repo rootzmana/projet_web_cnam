@@ -6,6 +6,7 @@ import { myTheme } from "./components/myCustomTheme";
 import HomeSection from "./components/HomeSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
+import ProjectsSection from "./components/ProjectsSection";
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
         <div id="skills_section" className="Section Skills">
           <SkillsSection />
         </div>
-        <div id="projects_section" className="Section">
-          projects
+        <div id="projects_section" className="Section Skills">
+          <ProjectsSection />
         </div>
         <div id="contact_section" className="Section">
           contact
