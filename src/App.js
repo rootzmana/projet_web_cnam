@@ -7,6 +7,7 @@ import HomeSection from "./components/HomeSection";
 import AboutSection from "./components/AboutSection";
 import SkillsSection from "./components/SkillsSection";
 import ProjectsSection from "./components/ProjectsSection";
+import ContactSection from "./components/ContactSection";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           <ProjectsSection />
         </div>
         <div id="contact_section" className="Section">
-          contact
+          <ContactSection />
         </div>
       </div>
     </ThemeProvider>
