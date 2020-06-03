@@ -58,7 +58,7 @@ export default function ContactSection() {
       method: "GET",
     })
       .then(function (response) {
-        if (response.ok && response.status != 400) {
+        if (response.ok && response.status !== 400) {
           setSendingMailResult(true);
           openSnackBar(true);
         } else {

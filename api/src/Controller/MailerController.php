@@ -28,7 +28,6 @@ class MailerController extends AbstractController
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'body' => ['secret' => $secret, 'response' => $request->query->get('captcha')]
         ]);
-        echo ($response->getContent());
         if ($response->toArray()["success"]) {
             $email = (new Email())
                 ->from($request->query->get('mail'))
@@ -38,11 +37,10 @@ class MailerController extends AbstractController
 
             $mailer->send($email);
 
-            $res = new Response(Response::HTTP_OK);
+            $res = new Response(Response::HTTP_OK, 200);
         } else {
-            $res = new Response(Response::HTTP_BAD_REQUEST);
+            $res = new Response(Response::HTTP_BAD_REQUEST, 400);
         }
-
         return $res;
     }
 }
